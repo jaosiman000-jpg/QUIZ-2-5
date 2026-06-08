@@ -1128,6 +1128,38 @@
       color: var(--color-accent-dark);
       font-weight: 800;
     }
+
+    /* -------------------------------------------------------
+       OVERRIDE: garante que o botão da VSL mantém a cor
+       original do design, mesmo com o CSS da Hotmart carregado
+       ------------------------------------------------------- */
+    a#vsl-cta,
+    a#vsl-cta:visited,
+    a#vsl-cta:hover,
+    a#vsl-cta:focus,
+    a#vsl-cta:active {
+      background: linear-gradient(135deg, var(--color-accent-sage) 0%, var(--color-accent-dark) 100%) !important;
+      color: var(--color-white) !important;
+      border: none !important;
+      box-shadow: 0 4px 12px rgba(74, 93, 67, 0.12) !important;
+      border-radius: var(--radius-md) !important;
+      padding: 16px 24px !important;
+      font-family: var(--font-body) !important;
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      margin-top: auto !important;
+      transition: all 0.25s ease !important;
+    }
+
+    a#vsl-cta:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(74, 93, 67, 0.2) !important;
+    }
   </style>
 </head>
 <body>
