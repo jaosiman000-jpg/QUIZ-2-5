@@ -1641,20 +1641,10 @@
           header.style.display = (targetId === 'screen-intro') ? 'none' : '';
         }
 
-        // Notificações: só visíveis na VSL
+        // Notificações: desativadas por completo
         const toast = document.getElementById('notification-toast');
         if (toast) {
-          if (targetId === 'screen-vsl') {
-            toast.style.pointerEvents = 'none';
-            // Inicia o manager na primeira vez que a VSL é exibida
-            if (!window._socialProofStarted) {
-              window._socialProofStarted = true;
-              window._socialProofManager.start();
-            }
-          } else {
-            // Esconde imediatamente em todas as outras telas
-            toast.classList.remove('show');
-          }
+          toast.classList.remove('show');
         }
 
         this.updateProgressBar(targetId);
@@ -2029,9 +2019,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       quiz.init();
 
-      // SocialProof fica guardado globalmente, mas SÓ inicia na VSL
-      window._socialProofManager = new SocialProofManager();
-      window._socialProofStarted = false;
+      // SocialProof desativado por completo
     });
   </script>
 </body>
