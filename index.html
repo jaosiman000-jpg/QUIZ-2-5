@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método 2+5 - Diagnóstico de Tela Infantil</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Descubra o quanto a tela já está afetando o seu filho — e exatamente o que fazer a partir de hoje. Responda 9 perguntas rápidas.">
+  <meta name="robots" content="noindex, nofollow"> <!-- Funnel entry point, prevent indexing if desired, or index -->
+
+  <!-- Google Fonts: Fraunces (Serif, titles) & Nunito Sans (Body text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..1000;1,6..12,300..1000&display=swap" rel="stylesheet">
+
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM (Sálvia & Areia Palette)
+       ---------------------------------------------------- */
+    :root {
+      /* Colors */
+      --color-bg-start: #eef0e6;
+      --color-bg-end: #e3e7d7;
+      --color-card: #f7f9f1;
+      --color-text-main: #3d4a37;
+      --color-text-soft: #6a7a60;
+      --color-accent-sage: #5e7355;
+      --color-accent-dark: #4a5d43;
+      --color-detail-terracotta: #c88a4f;
+      --color-highlight-light: #fbeede;
+      --color-lines: #c4ceb6;
+      --color-white: #ffffff;
+
+      /* Fonts */
+      --font-title: 'Fraunces', serif;
+      --font-body: 'Nunito Sans', sans-serif;
+
+      /* Radii */
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+
+      /* Shadows */
+      --shadow-soft: 0 10px 30px rgba(74, 93, 67, 0.08), 0 2px 8px rgba(74, 93, 67, 0.04);
+      --shadow-card: 0 4px 12px rgba(74, 93, 67, 0.04);
+    }
+
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-main);
+      background: radial-gradient(circle at top, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      line-height: 1.5;
+    }
+
+    /* Premium App-like Wrapper */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-lines);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 24px;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+        align-items: flex-start;
+      }
+      .app-container {
+        border-radius: 0;
+        min-height: 100vh;
+        border: none;
+        box-shadow: none;
+        padding: 24px 16px;
+      }
+    }
+
+    /* Header & Branding */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      min-height: 0;
+    }
+    
+    .brand-logo {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-accent-dark);
+      flex: 1;
+      text-align: center;
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: 1.5px solid var(--color-lines);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-text-soft);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover {
+      border-color: var(--color-accent-sage);
+      color: var(--color-accent-dark);
+      background-color: #f2f5ef;
+    }
+
+    .btn-back svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .btn-back.hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Spacer so logo stays centered when back button is hidden */
+    .header-spacer {
+      width: 72px;
+      flex-shrink: 0;
+    }
+
+    /* ----------------------------------------------------
+       PROGRESS BAR (Non-linear styling)
+       ---------------------------------------------------- */
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, height 0.3s ease, margin-bottom 0.3s ease;
+    }
+
+    .progress-container.visible {
+      opacity: 1;
+      height: auto;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar-wrapper {
+      width: 100%;
+      height: 8px;
+      background-color: var(--color-lines);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-accent-sage) 0%, var(--color-accent-dark) 100%);
+      border-radius: 4px;
+      transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .progress-percent {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-accent-sage);
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-text-soft);
+      white-space: nowrap;
+    }
+
+    /* Intro screen image styling */
+    .intro-image-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-lines);
+      margin: 12px 0 20px 0;
+    }
+
+    .intro-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ----------------------------------------------------
+       SCREEN CONTAINER & ANIMATIONS
+       ---------------------------------------------------- */
+    .screens-viewport {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      width: 100%;
+      animation-fill-mode: forwards;
+    }
+
+    /* State transitions */
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+
+    .screen.exiting {
+      display: flex;
+      flex-direction: column;
+      animation: fadeOutUp 0.25s ease-in forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOutUp {
+      to {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .screen.active, .screen.exiting {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .progress-bar {
+        transition: none !important;
+      }
+    }
+
+    /* ----------------------------------------------------
+       TYPOGRAPHY & CONTENT STYLING
+       ---------------------------------------------------- */
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-detail-terracotta);
+      margin-bottom: 6px;
+    }
+
+    .legenda {
+      font-size: 0.82rem;
+      color: var(--color-text-soft);
+      margin-top: -6px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .title-primary {
+      font-family: var(--font-title);
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--color-text-main);
+      margin-bottom: 12px;
+    }
+
+    .body-text {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--color-text-soft);
+      margin-bottom: 20px;
+    }
+
+    /* ----------------------------------------------------
+       IMAGE CONTAINERS (Custom stylized placeholders)
+       ---------------------------------------------------- */
+    .image-placeholder {
+      width: 100%;
+      background-color: #f2f4ec;
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      margin: 12px 0 20px 0;
+    }
+
+    .image-placeholder.aspect-16-9 {
+      aspect-ratio: 16 / 9;
+    }
+
+    .image-placeholder.aspect-4-3 {
+      aspect-ratio: 4 / 3;
+    }
+
+    .image-placeholder svg {
+      width: 44px;
+      height: 44px;
+      fill: var(--color-text-soft);
+      opacity: 0.5;
+      margin-bottom: 6px;
+    }
+
+    .image-label {
+      font-size: 0.75rem;
+      color: var(--color-text-soft);
+      font-weight: 700;
+      text-align: center;
+      padding: 0 16px;
+      line-height: 1.3;
+    }
+
+    /* ----------------------------------------------------
+       OPTION CARDS & SELECTION UI
+       ---------------------------------------------------- */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .option-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background-color: var(--color-white);
+      border: 1.5px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+
+    .option-card:hover {
+      border-color: var(--color-accent-sage);
+      background-color: #fafbfc;
+      transform: translateY(-1px);
+    }
+
+    .option-card:active {
+      transform: translateY(0);
+    }
+
+    .option-card.selected {
+      border-color: var(--color-accent-sage);
+      background-color: #f2f5ef;
+    }
+
+    .option-marker {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border: 2px solid var(--color-lines);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    /* Single Choice Circle Radio Indicator */
+    .option-card.single-choice .option-marker {
+      border-radius: 50%;
+    }
+
+    .option-card.single-choice .option-marker::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--color-accent-sage);
+      transform: scale(0);
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .option-card.single-choice.selected .option-marker {
+      border-color: var(--color-accent-sage);
+    }
+
+    .option-card.single-choice.selected .option-marker::after {
+      transform: scale(1);
+    }
+
+    /* Multi-Choice Square Checkbox Indicator */
+    .option-card.multi-choice .option-marker {
+      border-radius: 4px;
+    }
+
+    .option-card.multi-choice .option-marker::after {
+      content: '';
+      width: 8px;
+      height: 5px;
+      border-left: 2px solid var(--color-white);
+      border-bottom: 2px solid var(--color-white);
+      transform: rotate(-45deg) translate(0.5px, -0.5px) scale(0);
+      transition: transform 0.2s ease;
+    }
+
+    .option-card.multi-choice.selected .option-marker {
+      border-color: var(--color-accent-sage);
+      background-color: var(--color-accent-sage);
+    }
+
+    .option-card.multi-choice.selected .option-marker::after {
+      transform: rotate(-45deg) translate(0.5px, -0.5px) scale(1);
+    }
+
+    .option-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      line-height: 1.35;
+    }
+
+    /* ----------------------------------------------------
+       BUTTONS & NAVIGATION ACTIONS
+       ---------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--color-accent-sage) 0%, var(--color-accent-dark) 100%);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(74, 93, 67, 0.12);
+      margin-top: auto; /* Push to bottom of flex container */
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 93, 67, 0.2);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      background: var(--color-lines);
+      color: var(--color-text-soft);
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+
+    /* ----------------------------------------------------
+       CREDIBILITY CARD (Etapa 2)
+       ---------------------------------------------------- */
+    .credibility-card {
+      display: flex;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      margin-top: 16px;
+      margin-bottom: 24px;
+      transition: all 0.2s ease;
+    }
+
+    .credibility-card:hover {
+      border-color: var(--color-accent-sage);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .credibility-img-container {
+      width: 110px;
+      min-height: 80px;
+      background-color: #f2f5ef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--color-lines);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .credibility-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 80px;
+    }
+
+    .credibility-img-label {
+      font-size: 0.65rem;
+      color: var(--color-text-soft);
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .credibility-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .credibility-source {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--color-detail-terracotta);
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .credibility-desc {
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: var(--color-text-soft);
+    }
+
+    @media (max-width: 400px) {
+      .credibility-card {
+        flex-direction: column;
+      }
+      .credibility-img-container {
+        width: 100%;
+        height: 70px;
+        border-right: none;
+        border-bottom: 1px solid var(--color-lines);
+      }
+    }
+
+    /* ----------------------------------------------------
+       SBP RECOMMENDATIONS CARD (Etapa 2)
+       ---------------------------------------------------- */
+    .sbp-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin: 16px 0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .sbp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--color-accent-dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sbp-header svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--color-detail-terracotta);
+      flex-shrink: 0;
+    }
+
+    .sbp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sbp-item {
+      background-color: #f7f9f1;
+      border: 1.5px solid var(--color-lines);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .sbp-item.highlighted {
+      background-color: var(--color-highlight-light);
+      border-color: var(--color-detail-terracotta);
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(200, 138, 79, 0.15);
+      z-index: 2;
+    }
+
+    .sbp-item.highlighted::before {
+      content: "Seu filho";
+      position: absolute;
+      top: -8px;
+      right: 8px;
+      background-color: var(--color-detail-terracotta);
+      color: var(--color-white);
+      font-size: 0.58rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .sbp-age {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--color-text-soft);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    
+    .sbp-item.highlighted .sbp-age {
+      color: var(--color-detail-terracotta);
+    }
+
+    .sbp-limit {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin-bottom: 2px;
+      line-height: 1.1;
+    }
+
+    .sbp-detail {
+      font-size: 0.7rem;
+      color: var(--color-text-soft);
+      line-height: 1.2;
+    }
+
+    .sbp-quote {
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--color-text-soft);
+      background-color: #fafbfa;
+      border-left: 3px solid var(--color-accent-sage);
+      padding: 10px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: 12px;
+      position: relative;
+      font-style: italic;
+    }
+    
+    .sbp-quote-mark {
+      position: absolute;
+      top: -2px;
+      right: 10px;
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      color: rgba(94, 115, 85, 0.12);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    @media (max-width: 400px) {
+      .sbp-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .sbp-item.highlighted {
+        transform: none;
+      }
+    }
+
+    /* ----------------------------------------------------
+       RESPIRO CARD (Etapa 4)
+       ---------------------------------------------------- */
+    .respiro-card {
+      background-color: var(--color-highlight-light);
+      border: 1px solid var(--color-detail-terracotta);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      color: var(--color-text-main);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+    }
+
+    .respiro-emoji {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 12px;
+      animation: floatBubble 4s ease-in-out infinite;
+    }
+
+    .respiro-title {
+      font-family: var(--font-title);
+      color: var(--color-accent-dark);
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .respiro-paragraph {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--color-text-main);
+      margin-bottom: 12px;
+    }
+
+    .respiro-paragraph:last-child {
+      margin-bottom: 0;
+    }
+
+    .respiro-paragraph strong {
+      color: var(--color-accent-dark);
+      font-weight: 800;
+    }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+    }
+
+    /* ----------------------------------------------------
+       MULTI-CHOICE CONTINUE BUTTON WRAPPER
+       ---------------------------------------------------- */
+    .multi-choice-footer {
+      margin-top: 8px;
+    }
+
+    /* ----------------------------------------------------
+       MICRORECOMPENSA 2 CARD
+       ---------------------------------------------------- */
+    .micro2-card {
+      background-color: #f2f5ef;
+      border-left: 4px solid var(--color-accent-sage);
+      border-radius: var(--radius-md);
+      padding: 20px 20px 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .micro2-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text-main);
+      font-weight: 600;
+    }
+
+    /* ----------------------------------------------------
+       PROCESSING THEATER
+       ---------------------------------------------------- */
+    .processing-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 28px;
+      padding: 20px 0 32px;
+    }
+
+    .processing-spinner {
+      width: 64px;
+      height: 64px;
+      position: relative;
+    }
+
+    .processing-spinner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid var(--color-lines);
+    }
+
+    .processing-spinner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: var(--color-accent-sage);
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .processing-message {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-accent-dark);
+      text-align: center;
+      min-height: 2em;
+      transition: opacity 0.35s ease;
+    }
+
+    .processing-message.fade-out {
+      opacity: 0;
+    }
+
+    /* ----------------------------------------------------
+       RESULT PAGE — BADGES & FAIXAS
+       ---------------------------------------------------- */
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .result-badge.faixa-1 {
+      background-color: #eaf5e6;
+      color: var(--color-accent-dark);
+      border: 1.5px solid var(--color-accent-sage);
+    }
+
+    .result-badge.faixa-2 {
+      background-color: var(--color-highlight-light);
+      color: #a06b1a;
+      border: 1.5px solid var(--color-detail-terracotta);
+    }
+
+    .result-badge.faixa-3 {
+      background-color: #fdecea;
+      color: #b03030;
+      border: 1.5px solid #e07070;
+    }
+
+    .result-badge .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: currentColor;
+      flex-shrink: 0;
+    }
+
+    .result-desire-card {
+      background-color: #f2f5ef;
+      border-left: 4px solid var(--color-accent-sage);
+      border-radius: var(--radius-md);
+      padding: 16px 20px 16px 20px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--color-text-main);
+    }
+
+    .result-desire-card em {
+      font-style: normal;
+      font-weight: 800;
+      color: var(--color-accent-dark);
+    }
+
+    .result-diagnosis-card {
+      background-color: var(--color-card);
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .result-title {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .result-text {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--color-text-soft);
+    }
+
+    .result-bridge {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--color-accent-dark);
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* .btn-restart removed */
+
+    /* ----------------------------------------------------
+       VSL PAGE — VIDEO CONTAINER
+       ---------------------------------------------------- */
+    .vsl-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #eaf5e6;
+      border: 1.5px solid var(--color-accent-sage);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-dark);
+      margin-bottom: 16px;
+    }
+
+    .vsl-eyebrow .vsl-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--color-accent-sage);
+      border-radius: 50%;
+      animation: pulseDot 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .vsl-video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #0d0d0d;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 16px 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vsl-video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .vsl-play-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vsl-play-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+      margin-left: 3px;
+    }
+
+    .vsl-subtitle {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--color-text-soft);
+      margin-bottom: 20px;
+    }
+
+    /* ----------------------------------------------------
+       SOCIAL PROOF NOTIFICATIONS (TOASTS)
+       ---------------------------------------------------- */
+    .notification-toast {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      background-color: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--color-lines);
+      border-radius: 20px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 24px rgba(74, 93, 67, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      transform: translateY(-80px);
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.4s ease;
+      pointer-events: none; /* Allows clicks to pass through */
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .notification-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .notification-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #2e7d32; /* Green for active/live */
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .notification-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 2px solid #2e7d32;
+      border-radius: 50%;
+      animation: pulseNotificationDot 1.5s ease-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes pulseNotificationDot {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    .notification-text {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      line-height: 1.3;
+    }
+
+    .notification-text strong {
+      color: var(--color-accent-dark);
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Branding Header -->
+    <header class="app-header">
+      <button class="btn-back hidden" id="btn-back" onclick="quiz.prev()" aria-label="Voltar">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+        Voltar
+      </button>
+      <span class="brand-logo">Método 2+5</span>
+      <div class="header-spacer"></div>
+    </header>
+
+    <!-- Social Proof Notification Toast -->
+    <div class="notification-toast" id="notification-toast">
+      <div class="notification-dot"></div>
+      <span class="notification-text" id="notification-text">Mariana S. acabou de entrar no método</span>
+    </div>
+
+    <!-- Non-Linear Progress Bar Container -->
+    <div class="progress-container" id="progress-container">
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-info-row">
+        <span class="progress-percent" id="progress-percent">0%</span>
+        <span class="progress-text" id="progress-text">1 de 7</span>
+      </div>
+    </div>
+
+    <!-- Active Screens Viewport -->
+    <main class="screens-viewport">
+
+      <!-- ====================================================
+           ETAPA 0 - TELA DE ABERTURA
+           ==================================================== -->
+      <section class="screen" id="screen-intro">
+        <span class="eyebrow">DIAGNÓSTICO RÁPIDO · 60 SEGUNDOS</span>
+        <h1 class="title-primary">Descubra o quanto a tela já está afetando o seu filho — e exatamente o que fazer a partir de hoje.</h1>
+        <p class="body-text">Responda 9 perguntas rápidas e receba um diagnóstico personalizado. Sem julgamento. Só clareza.</p>
+        
+        <!-- Imagem: criança pequena de 2-9 anos absorta numa tela -->
+        <div class="intro-image-container">
+          <img src="./intro-image.jpg" alt="Criança pequena absorta em uma tela" class="intro-image">
+        </div>
+        
+        <button class="btn" id="btn-start" onclick="quiz.start()">Começar agora &rarr;</button>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 1 - PERGUNTA 1 (Escolha Única)
+           ==================================================== -->
+      <section class="screen" id="screen-p1">
+        <span class="eyebrow">Sobre o seu filho</span>
+        <span class="legenda">(rapidinho, só pra te conhecer)</span>
+        <h2 class="title-primary">Pra começar: quantos anos tem o seu filho?</h2>
+        
+        <div class="options-list">
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p1', 'less_2', 1, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Menos de 2 anos</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p1', '2_4', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Entre 2 e 4 anos</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p1', '5_9', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Entre 5 e 9 anos</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p1', 'more_9', 1, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Mais de 9 anos</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 1 - PERGUNTA 2 (Escolha Única)
+           ==================================================== -->
+      <section class="screen" id="screen-p2">
+        <span class="eyebrow">Sobre o seu filho</span>
+        <h2 class="title-primary">Num dia normal, quanto tempo ele passa em telas (TV, celular, tablet)?</h2>
+        
+        <div class="options-list">
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p2', 'less_1h', 1, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Menos de 1 hora</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p2', '1_2h', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Entre 1 e 2 horas</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p2', '2_4h', 3, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Entre 2 e 4 horas</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p2', 'more_4h', 4, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Mais de 4 horas / perdi a conta</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 2 - MICRORECOMPENSA 1 + CREDIBILIDADE
+           ==================================================== -->
+      <section class="screen" id="screen-micro1">
+        <span class="eyebrow">Só um segundo</span>
+        <h2 class="title-primary">Antes de continuar, quero te dizer uma coisa.</h2>
+        <p class="body-text" id="micro1-dynamic-text">
+          <!-- Dynamically populated based on P2 choice -->
+        </p>
+
+        <!-- Tabela de Recomendações SBP -->
+        <div class="sbp-card">
+          <div class="sbp-header">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            <span>Diretrizes de Tela Oficiais (SBP)</span>
+          </div>
+          
+          <div class="sbp-grid">
+            <div class="sbp-item" id="sbp-age-less2">
+              <span class="sbp-age">Menos de 2 anos</span>
+              <span class="sbp-limit">Zero</span>
+              <span class="sbp-detail">Recreação</span>
+            </div>
+            <div class="sbp-item" id="sbp-age-2to4">
+              <span class="sbp-age">Entre 2 e 4 anos</span>
+              <span class="sbp-limit">Máx 1h</span>
+              <span class="sbp-detail">Por dia</span>
+            </div>
+            <div class="sbp-item" id="sbp-age-5to9">
+              <span class="sbp-age">Entre 5 e 9 anos</span>
+              <span class="sbp-limit">Máx 2h</span>
+              <span class="sbp-detail">Por dia</span>
+            </div>
+            <div class="sbp-item" id="sbp-age-more9">
+              <span class="sbp-age">Mais de 9 anos</span>
+              <span class="sbp-limit">Máx 2h</span>
+              <span class="sbp-detail">Por dia</span>
+            </div>
+          </div>
+
+          <div class="sbp-quote">
+            <span class="sbp-quote-mark">“</span>
+            A recomendação é que crianças com menos de 1 ano de idade não sejam expostas a nenhuma tela. A Sociedade Brasileira de Pediatria recomenda que os menores de 2 anos não utilizem telas como recreação. Os que estão entre 2 e 5 anos podem usar telas por no máximo 1 hora por dia. Os maiores de 5 anos, no máximo 2 horas por dia.
+          </div>
+        </div>
+
+        <!-- Card de credibilidade — artigo G1 Globo -->
+        <a href="https://g1.globo.com/bemestar/blog/ana-escobar/post/2019/04/29/criancas-e-o-uso-de-telas-novas-recomendacoes.ghtml"
+           class="credibility-card" id="credibility-link"
+           target="_blank" rel="noopener noreferrer">
+          <div class="credibility-img-container">
+            <img
+              class="credibility-thumb"
+              src="https://s2-g1.glbimg.com/6C_KdVmJlOdWDGfzA-6i3d3Pcm8=/1280x0/filters:format(jpeg)/https://s01.video.glbimg.com/x720/7565312.jpg"
+              alt="Crianças e o uso de telas: novas recomendações"
+              loading="lazy"
+            >
+          </div>
+          <div class="credibility-info">
+            <span class="credibility-source">G1 &middot; Globo.com</span>
+            <p class="credibility-desc">Crianças e o uso de telas: novas recomendações para cada faixa etária &mdash; Blog da Doutora Ana Escobar.</p>
+          </div>
+        </a>
+
+        <button class="btn" onclick="quiz.next()">Faz sentido. Continuar &rarr;</button>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 3 - PERGUNTA 3 (Escolha Única)
+           ==================================================== -->
+      <section class="screen" id="screen-p3">
+        <span class="eyebrow">O dia a dia de vocês</span>
+        <h2 class="title-primary">Em que momentos a tela mais entra na rotina?</h2>
+        
+        <div class="options-list">
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p3', 'rarely', 1, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Raramente, é exceção</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p3', 'specific_times', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Em horários específicos que eu controlo</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p3', 'necessity', 3, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Quando preciso dar conta das coisas (cozinhar, trabalhar, descansar)</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p3', 'tantrums', 4, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Sempre que ele pede ou faz manha — vira o jeito mais fácil</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 3 - PERGUNTA 4 (Escolha Única)
+           ==================================================== -->
+      <section class="screen" id="screen-p4">
+        <span class="eyebrow">O dia a dia de vocês</span>
+        <h2 class="title-primary">Você já tentou diminuir a tela do seu filho antes?</h2>
+        
+        <div class="options-list">
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p4', 'never', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Nunca tentei</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p4', 'once_gave_up', 3, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Tentei uma vez e desisti</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p4', 'many_backtrack', 4, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Já tentei várias vezes e sempre volto atrás</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p4', 'try_fail_keep', 4, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Tento direto, mas não consigo manter</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 4 - PÁGINA DE RESPIRO
+           ==================================================== -->
+      <section class="screen" id="screen-respiro">
+        <div class="respiro-card">
+          <div class="respiro-emoji">🫧</div>
+          <h2 class="respiro-title">Antes de continuar, respira. Isso aqui vai te aliviar.</h2>
+          <p class="respiro-paragraph">Se você marcou que já tentou tirar a tela e não conseguiu, presta atenção: <strong>a culpa não é sua.</strong> Os aplicativos e vídeos que prendem seu filho foram desenhados por profissionais — muito bem pagos — pra prender a atenção de uma criança de propósito.</p>
+          <p class="respiro-paragraph">O som, a recompensa que vem sem hora certa, o vídeo que começa sozinho: nada disso é por acaso. É engenharia.</p>
+          <p class="respiro-paragraph">Você não está brigando com o seu filho. Está brigando, sozinho, contra uma indústria inteira. E a solução não começa na criança — <strong>começa em você.</strong></p>
+        </div>
+        <button class="btn" onclick="quiz.next()">Agora me conta sobre o seu filho &rarr;</button>
+      </section>
+
+      <section class="screen" id="screen-p5">
+        <span class="eyebrow">O comportamento do seu filho</span>
+        <h2 class="title-primary">Quando você tenta tirar a tela, como ele reage?</h2>
+        <div class="options-list">
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p5', 'accepts', 1, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Aceita numa boa</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p5', 'complains_passes', 2, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Reclama um pouco, mas passa</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p5', 'very_angry', 3, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Fica bem irritado</span>
+          </div>
+          <div class="option-card single-choice" onclick="quiz.selectSingle('p5', 'full_crisis', 4, this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Tem crise de verdade — grita, chora, se joga no chão</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-p6">
+        <span class="eyebrow">O comportamento do seu filho · marque quantos quiser</span>
+        <span class="legenda">(marque tudo o que você reconhecer — sem medo)</span>
+        <h2 class="title-primary">Quais desses comportamentos você já notou nele?</h2>
+        <div class="options-list" id="p6-options">
+          <div class="option-card multi-choice" data-choice="irritable" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Fica irritado ou agressivo quando você tira a tela</span>
+          </div>
+          <div class="option-card multi-choice" data-choice="lost_interest" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Perdeu o interesse pelos brinquedos que tinha</span>
+          </div>
+          <div class="option-card multi-choice" data-choice="sleep_issues" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Tem dificuldade pra dormir ou se acalmar</span>
+          </div>
+          <div class="option-card multi-choice" data-choice="impatient" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Fica impaciente, quer tudo na hora</span>
+          </div>
+          <div class="option-card multi-choice" data-choice="stronger_tantrums" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Faz birra mais forte do que antes</span>
+          </div>
+          <div class="option-card multi-choice" data-choice="speech_delay" data-weight="2" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Fala menos, ou travou/regrediu na fala</span>
+          </div>
+          <!-- Opção exclusiva: ao marcar, desmarca as demais. Peso negativo. -->
+          <div class="option-card multi-choice" data-choice="none" data-weight="-3" data-exclusive="true" onclick="quiz.toggleMulti('p6', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Sinceramente? Não notei nenhum desses</span>
+          </div>
+        </div>
+        <div class="multi-choice-footer">
+          <button class="btn" id="btn-p6-continue" onclick="quiz.submitMulti('p6')" disabled>Continuar &rarr;</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-micro2">
+        <span class="eyebrow">Só um instante</span>
+        <h2 class="title-primary" id="micro2-title">Estamos quase lá.</h2>
+        <p class="body-text" id="micro2-dynamic-text"></p>
+        <button class="btn" onclick="quiz.next()">Continuar &rarr;</button>
+      </section>
+
+      <section class="screen" id="screen-p7">
+        <span class="eyebrow">O que importa de verdade</span>
+        <span class="legenda">(a pergunta mais importante)</span>
+        <h2 class="title-primary">Por último: qual momento você mais quer de volta?</h2>
+        <div class="options-list">
+          <!-- Cada opção salva um "texto-desejo" diferente para o resultado personalizado -->
+          <div class="option-card single-choice"
+               onclick="quiz.selectDesejo('sentar pra comer junto de novo, sem a tela no meio', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Sentar pra comer junto, sem o tablet na mesa pra ele parar de chorar</span>
+          </div>
+          <div class="option-card single-choice"
+               onclick="quiz.selectDesejo('ver seu filho largar a tela e correr pra brincar de verdade', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Ver ele largar a tela e correr pra brincar — no chão, na rua, sujo de terra</span>
+          </div>
+          <div class="option-card single-choice"
+               onclick="quiz.selectDesejo('chamar o nome dele e ser olhado de volta', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Chamar o nome dele e ele te olhar nos olhos na primeira vez</span>
+          </div>
+          <div class="option-card single-choice"
+               onclick="quiz.selectDesejo('uma tarde inteira sem briga por causa do celular', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Uma tarde inteira sem briga, sem grito, sem birra por causa do celular</span>
+          </div>
+          <div class="option-card single-choice"
+               onclick="quiz.selectDesejo('o seu filho de volta — inteiro, presente, do seu lado', this)">
+            <div class="option-marker"></div>
+            <span class="option-text">Tudo isso. Eu só quero o meu filho de volta.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 8 — PROCESSING THEATER
+           Spinner animado + mensagens em sequência.
+           Avança automaticamente para o resultado após ~3.6s.
+           Barra de progresso vai a 100% nessa tela.
+           ==================================================== -->
+      <section class="screen" id="screen-processing">
+        <div class="processing-center">
+          <div class="processing-spinner"></div>
+          <!-- id="processing-msg" usado pelo JS pra trocar mensagens em sequência -->
+          <p class="processing-message" id="processing-msg">Analisando as suas respostas...</p>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 9 — RESULTADO PERSONALIZADO
+           Usa o desejo da P7 e a soma de pontos para
+           classificar em 3 faixas e montar o diagnóstico.
+           ==================================================== -->
+      <section class="screen" id="screen-results">
+        <!-- Badge da faixa (preenchido pelo JS conforme score) -->
+        <div id="result-badge-container"></div>
+
+        <!-- Echo do desejo da P7 — personaliza o resultado -->
+        <div class="result-desire-card" id="result-desire-card"></div>
+
+        <!-- Card do diagnóstico da faixa -->
+        <div class="result-diagnosis-card">
+          <h2 class="result-title" id="result-title"></h2>
+          <p class="result-text" id="result-text"></p>
+        </div>
+
+        <!-- Frase de ponte (igual para todas as faixas) -->
+        <p class="result-bridge">Eu preparei o primeiro passo pra você — e ele já está pronto, esperando aí embaixo.</p>
+
+        <button class="btn" onclick="quiz.goToVSL()">Assistir minha primeira aula &rarr;</button>
+      </section>
+
+      <!-- ====================================================
+           ETAPA 10 — A PÁGINA DA VSL
+           NOTA DE COPY: o enquadramento "Aula 1" é intencional.
+           Tratar a VSL como "primeira aula" cria a sensação de
+           que o lead já está dentro do método — aumenta o
+           engajamento e a sensação de pertencimento antes mesmo
+           de comprar. É uma decisão estratégica de copywriting.
+           ==================================================== -->
+      <section class="screen" id="screen-vsl">
+        <!-- Eyebrow em estilo "badge liberado" com ponto animado -->
+        <div class="vsl-eyebrow">
+          <span class="vsl-dot"></span>
+          MÉTODO 2+5 · AULA 1 (LIBERADA)
+        </div>
+
+        <h2 class="title-primary" id="vsl-title">Sua primeira aula está pronta.</h2>
+
+        <p class="vsl-subtitle">Aperta o play. Em poucos minutos, a Natália vai te mostrar exatamente por que nada funcionou até agora — e o caminho de 7 dias pra reverter.</p>
+
+        <!-- ============================================================
+             PLAYER DA VSL — CONTAINER RESPONSIVO 16:9
+             Substitua o conteúdo interno pelo embed do seu player:
+             Ex: <iframe src="https://seulink.com/embed/..." ...></iframe>
+             Ou: <div class="wistia_embed wistia_async_XXXX"></div>
+             ============================================================ -->
+        <div class="vsl-video-container">
+          <!-- Placeholder visual até o embed real ser inserido -->
+          <div class="vsl-video-placeholder">
+            <div class="vsl-play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span>Insira aqui o embed da VSL<br>(iframe, Wistia, Vimeo, YouTube, etc.)</span>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             BOTÃO DE CTA — CHECKOUT
+             Por padrão visível imediatamente.
+             Para atrasar a aparição (ex: após 30s de vídeo),
+             adicione style="display:none" no botão e use:
+             setTimeout(() => document.getElementById('vsl-cta').style.display = 'flex', 30000);
+             ============================================================ -->
+        <button class="btn" id="vsl-cta" onclick="window.location.href='https://pay.hotmart.com/U106113775E?checkoutMode=10'">
+          Continuar o Método 2+5 &rarr;
+        </button>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ----------------------------------------------------
+       QUIZ APP LOGIC & STATE MACHINE — COMPLETO (Prompts 1+2)
+       ---------------------------------------------------- -->
+  <script>
+    class QuizFunnel {
+      constructor() {
+        // Estado central — sem localStorage, tudo em memória
+        this.state = {
+          currentStepIndex: 0,
+          answers: {},    // { questionId: { choiceId, weight, text } | Array }
+          score: 0,       // soma de todos os pesos das perguntas pontuáveis
+          p7DesejoText: '' // guardado na P7, usado no resultado e na VSL
+        };
+
+        // Sequência completa das telas (Etapas 0→10)
+        this.steps = [
+          'screen-intro',       // 0 — Abertura
+          'screen-p1',          // 1 — P1: Idade
+          'screen-p2',          // 2 — P2: Tempo de tela
+          'screen-micro1',      // 3 — Microrecompensa 1 (não conta)
+          'screen-p3',          // 4 — P3: Momentos
+          'screen-p4',          // 5 — P4: Tentativas
+          'screen-respiro',     // 6 — Respiro (não conta)
+          'screen-p5',          // 7 — P5: Reação ao tirar
+          'screen-p6',          // 8 — P6: Comportamentos (múltipla escolha)
+          'screen-micro2',      // 9 — Microrecompensa 2 (não conta)
+          'screen-p7',          // 10 — P7: Desejo (não pontua, guarda texto)
+          'screen-processing',  // 11 — Processing theater (auto-avança)
+          'screen-results',     // 12 — Resultado personalizado
+          'screen-vsl'          // 13 — VSL "Aula 1"
+        ];
+
+        // -------------------------------------------------------
+        // BARRA DE PROGRESSO NÃO-LINEAR
+        // Os percentuais refletem a conclusão da etapa anterior.
+        // Micro-recompensas e respiro não adicionam progresso.
+        // -------------------------------------------------------
+        this.progressConfig = {
+          'screen-intro':      { showBar: false, percent: 0,   text: '' },
+          'screen-p1':         { showBar: true,  percent: 0,   text: '1 de 7' },
+          'screen-p2':         { showBar: true,  percent: 22,  text: '2 de 7' }, // P1 concluída
+          'screen-micro1':     { showBar: true,  percent: 38,  text: '2 de 7' }, // P2 concluída, micro não conta
+          'screen-p3':         { showBar: true,  percent: 38,  text: '3 de 7' }, // vindo do micro
+          'screen-p4':         { showBar: true,  percent: 52,  text: '4 de 7' }, // P3 concluída
+          'screen-respiro':    { showBar: true,  percent: 65,  text: '4 de 7' }, // P4 concluída, respiro não conta
+          'screen-p5':         { showBar: true,  percent: 65,  text: '5 de 7' }, // vindo do respiro
+          'screen-p6':         { showBar: true,  percent: 76,  text: '6 de 7' }, // P5 concluída
+          'screen-micro2':     { showBar: true,  percent: 85,  text: '6 de 7' }, // P6 concluída, micro não conta
+          'screen-p7':         { showBar: true,  percent: 85,  text: '7 de 7' }, // vindo do micro2
+          'screen-processing': { showBar: true,  percent: 100, text: '7 de 7' }, // P7 concluída
+          'screen-results':    { showBar: false, percent: 100, text: '' },
+          'screen-vsl':        { showBar: false, percent: 100, text: '' }
+        };
+      }
+
+      // --------------------------------------------------------
+      // INICIALIZAÇÃO
+      // --------------------------------------------------------
+      init() {
+        this.goToStep(0);
+      }
+
+      start() {
+        this.goToStep(1);
+      }
+
+      // --------------------------------------------------------
+      // NAVEGAÇÃO PRINCIPAL — transição fade+slide entre telas
+      // --------------------------------------------------------
+      goToStep(index) {
+        if (index < 0 || index >= this.steps.length) return;
+
+        const currentId = this.steps[this.state.currentStepIndex];
+        const targetId  = this.steps[index];
+        const currentScreen = document.getElementById(currentId);
+        const targetScreen  = document.getElementById(targetId);
+
+        if (currentScreen && currentScreen !== targetScreen) {
+          currentScreen.classList.remove('active');
+          currentScreen.classList.add('exiting');
+
+          setTimeout(() => {
+            currentScreen.style.display = 'none';
+            currentScreen.classList.remove('exiting');
+            this.state.currentStepIndex = index;
+            this.prepareAndShowScreen(targetScreen, targetId);
+          }, 250);
+        } else {
+          this.state.currentStepIndex = index;
+          this.prepareAndShowScreen(targetScreen, targetId);
+        }
+      }
+
+      prepareAndShowScreen(targetScreen, targetId) {
+        // Lógica de preparação de conteúdo dinâmico por tela
+        if (targetId === 'screen-micro1')     this.prepareMicro1();
+        if (targetId === 'screen-micro2')     this.prepareMicro2();
+        if (targetId === 'screen-processing') this.startProcessing();
+        if (targetId === 'screen-results')    this.prepareResults();
+        if (targetId === 'screen-vsl')        this.prepareVSL();
+
+        // Logo "Método 2+5": só visível na VSL
+        const logo = document.querySelector('.brand-logo');
+        const header = document.querySelector('.app-header');
+        if (logo) {
+          logo.style.display = (targetId === 'screen-vsl') ? '' : 'none';
+        }
+        // Header inteiro: oculto na intro (sem logo e sem botão voltar)
+        if (header) {
+          header.style.display = (targetId === 'screen-intro') ? 'none' : '';
+        }
+
+        // Notificações: só visíveis na VSL
+        const toast = document.getElementById('notification-toast');
+        if (toast) {
+          if (targetId === 'screen-vsl') {
+            toast.style.pointerEvents = 'none';
+            // Inicia o manager na primeira vez que a VSL é exibida
+            if (!window._socialProofStarted) {
+              window._socialProofStarted = true;
+              window._socialProofManager.start();
+            }
+          } else {
+            // Esconde imediatamente em todas as outras telas
+            toast.classList.remove('show');
+          }
+        }
+
+        this.updateProgressBar(targetId);
+
+        targetScreen.style.display = 'flex';
+        targetScreen.offsetHeight; // força reflow p/ animação funcionar
+        targetScreen.classList.add('active');
+      }
+
+      // --------------------------------------------------------
+      // BARRA DE PROGRESSO
+      // --------------------------------------------------------
+      updateProgressBar(stepId) {
+        const config = this.progressConfig[stepId];
+        const container   = document.getElementById('progress-container');
+        const bar         = document.getElementById('progress-bar');
+        const textEl      = document.getElementById('progress-text');
+        const percentEl   = document.getElementById('progress-percent');
+        const backBtn     = document.getElementById('btn-back');
+
+        if (!config || !config.showBar) {
+          container.classList.remove('visible');
+        } else {
+          container.classList.add('visible');
+          bar.style.width = `${config.percent}%`;
+          textEl.innerText = config.text;
+          if (percentEl) percentEl.innerText = `${config.percent}%`;
+        }
+
+        // Mostra o botão voltar em todas as telas exceto intro, processing, results e vsl
+        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results', 'screen-vsl'];
+        if (backBtn) {
+          if (noBackScreens.includes(stepId)) {
+            backBtn.classList.add('hidden');
+          } else {
+            backBtn.classList.remove('hidden');
+          }
+        }
+      }
+
+      // --------------------------------------------------------
+      // ESCOLHA ÚNICA — seleciona e avança automaticamente em 250ms
+      // --------------------------------------------------------
+      selectSingle(questionId, choiceId, weight, element) {
+        const parent = element.parentElement;
+        parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        element.classList.add('selected');
+
+        this.state.answers[questionId] = {
+          choiceId,
+          weight,
+          text: element.querySelector('.option-text').innerText
+        };
+        this.updateTotalScore();
+
+        parent.style.pointerEvents = 'none';
+        setTimeout(() => {
+          parent.style.pointerEvents = 'auto';
+          this.next();
+        }, 250);
+      }
+
+      // --------------------------------------------------------
+      // P7 — PERGUNTA DO DESEJO (não pontua, guarda texto)
+      // --------------------------------------------------------
+      selectDesejo(desejoText, element) {
+        const parent = element.parentElement;
+        parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        element.classList.add('selected');
+
+        // Guarda o texto-desejo — será usado no resultado e na VSL
+        this.state.p7DesejoText = desejoText;
+        // P7 NÃO pontua — não chamamos updateTotalScore()
+
+        parent.style.pointerEvents = 'none';
+        setTimeout(() => {
+          parent.style.pointerEvents = 'auto';
+          this.next();
+        }, 250);
+      }
+
+      // --------------------------------------------------------
+      // P6 — MÚLTIPLA ESCOLHA
+      // Regras:
+      // - Cada item pode ser marcado/desmarcado livremente
+      // - A opção "nenhum" (data-exclusive=true) é exclusiva:
+      //   marcá-la desmarca as demais, e vice-versa
+      // - Botão Continuar habilita após 1+ item marcado
+      // --------------------------------------------------------
+      toggleMulti(questionId, element) {
+        const isExclusive = element.dataset.exclusive === 'true';
+        const container   = document.getElementById('p6-options');
+        const allCards    = container.querySelectorAll('.option-card');
+        const continueBtn = document.getElementById('btn-p6-continue');
+
+        if (isExclusive) {
+          // Desmarca todas as outras e marca só esta
+          allCards.forEach(c => c.classList.remove('selected'));
+          element.classList.add('selected');
+        } else {
+          // Desmarca a opção exclusiva ("nenhum") se existir
+          allCards.forEach(c => {
+            if (c.dataset.exclusive === 'true') c.classList.remove('selected');
+          });
+          element.classList.toggle('selected');
+        }
+
+        // Habilita o botão se ao menos 1 opção estiver marcada
+        const selected = container.querySelectorAll('.option-card.selected');
+        continueBtn.disabled = selected.length === 0;
+      }
+
+      submitMulti(questionId) {
+        const container = document.getElementById('p6-options');
+        const selected  = container.querySelectorAll('.option-card.selected');
+        const answers   = [];
+
+        selected.forEach(card => {
+          answers.push({
+            choiceId: card.dataset.choice,
+            weight:   parseInt(card.dataset.weight, 10),
+            text:     card.querySelector('.option-text').innerText
+          });
+        });
+
+        this.state.answers[questionId] = answers;
+        this.updateTotalScore();
+        this.next();
+      }
+
+      // --------------------------------------------------------
+      // NAVEGAÇÃO GENÉRICA
+      // --------------------------------------------------------
+      next() {
+        this.goToStep(this.state.currentStepIndex + 1);
+      }
+
+      prev() {
+        // Não permite voltar da intro, processing, results ou vsl
+        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results', 'screen-vsl'];
+        const currentId = this.steps[this.state.currentStepIndex];
+        if (noBackScreens.includes(currentId)) return;
+        if (this.state.currentStepIndex > 0) {
+          this.goToStep(this.state.currentStepIndex - 1);
+        }
+      }
+
+      goToVSL() {
+        this.goToStep(this.steps.indexOf('screen-vsl'));
+      }
+
+      // --------------------------------------------------------
+      // PONTUAÇÃO — soma todos os pesos das respostas salvas
+      // --------------------------------------------------------
+      updateTotalScore() {
+        let sum = 0;
+        for (const qId in this.state.answers) {
+          const ans = this.state.answers[qId];
+          if (Array.isArray(ans)) {
+            ans.forEach(a => { sum += a.weight; });
+          } else if (ans && ans.weight !== undefined) {
+            sum += ans.weight;
+          }
+        }
+        this.state.score = sum;
+      }
+
+      // --------------------------------------------------------
+      // MICRORECOMPENSA 1 — texto condicional baseado na P2
+      // --------------------------------------------------------
+      prepareMicro1() {
+        const p2    = this.state.answers['p2'];
+        const el    = document.getElementById('micro1-dynamic-text');
+        if (!p2) { el.innerText = ''; return; }
+
+        const map = {
+          less_1h:  'Você está num caminho melhor que a maioria — mas mesmo pouco tempo, do tipo errado, afeta. Continua, que eu te mostro o que observar.',
+          '1_2h':   'Já está acima do recomendado pra essa idade. Não é culpa sua — e dá pra ajustar. Continua comigo.',
+          '2_4h':   'Isso é bem mais do que os pediatras recomendam pra essa idade. Mas respira: não é culpa sua, e tem solução. Continua, que eu te explico.',
+          more_4h:  'Isso é bem mais do que os pediatras recomendam pra essa idade. Mas respira: não é culpa sua, e tem solução. Continua, que eu te explico.'
+        };
+        el.innerText = map[p2.choiceId] || '';
+
+        // Destaque dinâmico das diretrizes da SBP baseado no P1 (idade do filho)
+        const p1 = this.state.answers['p1'];
+        document.querySelectorAll('.sbp-item').forEach(item => item.classList.remove('highlighted'));
+        if (p1) {
+          const ageChoice = p1.choiceId;
+          if (ageChoice === 'less_2') {
+            document.getElementById('sbp-age-less2')?.classList.add('highlighted');
+          } else if (ageChoice === '2_4') {
+            document.getElementById('sbp-age-2to4')?.classList.add('highlighted');
+          } else if (ageChoice === '5_9') {
+            document.getElementById('sbp-age-5to9')?.classList.add('highlighted');
+          } else if (ageChoice === 'more_9') {
+            document.getElementById('sbp-age-more9')?.classList.add('highlighted');
+          }
+        }
+      }
+
+      // --------------------------------------------------------
+      // MICRORECOMPENSA 2 — texto condicional baseado na P6
+      // Conta quantos comportamentos foram marcados (excluindo
+      // a opção "nenhum", que tem choiceId === 'none')
+      // --------------------------------------------------------
+      prepareMicro2() {
+        const p6Answers = this.state.answers['p6'] || [];
+        const el        = document.getElementById('micro2-dynamic-text');
+
+        // Filtra a opção exclusiva "nenhum"
+        const realItems = Array.isArray(p6Answers)
+          ? p6Answers.filter(a => a.choiceId !== 'none')
+          : [];
+        const markedNone = Array.isArray(p6Answers)
+          ? p6Answers.some(a => a.choiceId === 'none')
+          : false;
+
+        let msg = '';
+        if (markedNone) {
+          msg = 'Que bom que você ainda não vê esses sinais. O melhor momento de agir é antes deles aparecerem. Continua, que eu te mostro como prevenir.';
+        } else if (realItems.length >= 3) {
+          msg = 'Eu sei que ver tudo isso de uma vez aperta o coração. Mas respira: nada disso é culpa sua, e nada disso é permanente. É exatamente o que a tela causa — e exatamente o que dá pra reverter. Você está quase no seu diagnóstico.';
+        } else {
+          msg = 'Você já percebeu os primeiros sinais — e isso é uma coisa boa, porque quem percebe cedo age cedo. Continua, falta pouco pro seu diagnóstico.';
+        }
+
+        el.innerText = msg;
+      }
+
+      // --------------------------------------------------------
+      // PROCESSING THEATER
+      // Exibe mensagens em sequência, troca a cada ~1s,
+      // avança automaticamente para o resultado após ~3.5s
+      // --------------------------------------------------------
+      startProcessing() {
+        const messages = [
+          'Analisando as suas respostas...',
+          'Cruzando com o padrão de outras famílias...',
+          'Montando o seu diagnóstico personalizado...',
+          'Pronto.'
+        ];
+        const el = document.getElementById('processing-msg');
+        let i = 0;
+        el.innerText = messages[0];
+
+        const interval = setInterval(() => {
+          i++;
+          if (i < messages.length) {
+            // Fade out → troca texto → fade in
+            el.classList.add('fade-out');
+            setTimeout(() => {
+              el.innerText = messages[i];
+              el.classList.remove('fade-out');
+            }, 350);
+          } else {
+            clearInterval(interval);
+          }
+        }, 1000);
+
+        // Avança automaticamente para o resultado
+        setTimeout(() => this.next(), 3600);
+      }
+
+      // --------------------------------------------------------
+      // RESULTADO PERSONALIZADO
+      // Classifica em 3 faixas pelo score total e injeta
+      // o desejo da P7 no topo do card.
+      // --------------------------------------------------------
+      prepareResults() {
+        const score  = this.state.score;
+        const desejo = this.state.p7DesejoText || 'ter mais qualidade de vida com seu filho';
+
+        // Echo do desejo da P7
+        document.getElementById('result-desire-card').innerHTML =
+          `Você disse que quer <em>${desejo}</em>. Isso é possível — e eu vou te mostrar o caminho.`;
+
+        // Determina a faixa pelo score
+        let badgeClass, badgeLabel, titulo, texto;
+
+        if (score <= 12) {
+          // FAIXA 1 — Score baixo
+          badgeClass = 'faixa-1';
+          badgeLabel = 'Sinal de alerta inicial';
+          titulo     = 'Você chegou cedo — e isso é uma ótima notícia.';
+          texto      = 'A tela ainda não se enraizou de vez na rotina do seu filho. A janela pra agir é agora, do jeito mais fácil que vai existir — antes de virar uma crise diária.';
+        } else if (score <= 20) {
+          // FAIXA 2 — Score médio
+          badgeClass = 'faixa-2';
+          badgeLabel = 'Dependência em formação';
+          titulo     = 'A tela já ocupa um espaço grande — mas não é tarde.';
+          texto      = 'Pelas suas respostas, a tela já tem um peso real na vida do seu filho, e você já sente isso no comportamento dele. É exatamente o momento de agir com método, antes que vire aquela briga diária que esgota todo mundo.';
+        } else {
+          // FAIXA 3 — Score alto
+          badgeClass = 'faixa-3';
+          badgeLabel = 'Sinal forte de alerta';
+          titulo     = 'Respira. Não foi por falta de amor.';
+          texto      = 'Suas respostas mostram que a tela já está afetando bastante o dia a dia do seu filho — e que você já tentou resolver sozinho(a) e se frustrou. Isso não aconteceu porque você fez pouco. Aconteceu porque ninguém te deu a estratégia certa. E ela existe.';
+        }
+
+        document.getElementById('result-badge-container').innerHTML =
+          `<span class="result-badge ${badgeClass}"><span class="badge-dot"></span>${badgeLabel}</span>`;
+        document.getElementById('result-title').innerText = titulo;
+        document.getElementById('result-text').innerText  = texto;
+      }
+
+      // --------------------------------------------------------
+      // VSL — personaliza o título com referência ao filho
+      // --------------------------------------------------------
+      prepareVSL() {
+        // O título pode ser personalizado futuramente com o nome
+        // ou a faixa do diagnóstico. Por ora usa texto genérico.
+        document.getElementById('vsl-title').innerText =
+          'Sua primeira aula está pronta.';
+      }
+    }
+
+    // Social Proof Notifications Generator
+    class SocialProofManager {
+      constructor() {
+        this.names = [
+          'Ana Paula S.', 'Maria Eduarda L.', 'Mariana C.', 'Camila R.', 'Juliana F.', 
+          'Bruna M.', 'Gabriela O.', 'Letícia T.', 'Amanda P.', 'Jessica A.',
+          'Gabriel M.', 'Lucas S.', 'Mateus C.', 'Felipe R.', 'Rodrigo O.', 
+          'Bruno L.', 'Gustavo F.', 'Thiago P.', 'Rafael B.', 'Diego A.',
+          'Larissa N.', 'Beatriz G.', 'Fernanda K.', 'Aline V.', 'Patricia H.',
+          'Pedro H.', 'João Victor P.', 'Daniel G.', 'Leonardo C.', 'Arthur M.'
+        ];
+        
+        this.actions = [
+          'acabou de iniciar o diagnóstico...',
+          'começou o Método 2+5!',
+          'entrou no Método 2+5!',
+          'concluiu o quiz e viu seu diagnóstico',
+          'acabou de adquirir o Método 2+5',
+          'iniciou a primeira aula!',
+          'acabou de garantir o acesso ao método'
+        ];
+        
+        this.toast = document.getElementById('notification-toast');
+        this.textEl = document.getElementById('notification-text');
+        this.timer = null;
+      }
+
+      start() {
+        // Run first notification after 3 seconds
+        setTimeout(() => this.showNext(), 3000);
+        
+        // Loop every 8 seconds (shows for 3 seconds, hides for 5 seconds)
+        this.timer = setInterval(() => {
+          this.showNext();
+        }, 8000);
+      }
+
+      showNext() {
+        if (!this.toast || !this.textEl) return;
+        
+        const randomName = this.names[Math.floor(Math.random() * this.names.length)];
+        const randomAction = this.actions[Math.floor(Math.random() * this.actions.length)];
+        
+        this.textEl.innerHTML = `<strong>${randomName}</strong> ${randomAction}`;
+        
+        this.toast.classList.add('show');
+        
+        setTimeout(() => {
+          this.toast.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    // Instancia e inicializa o quiz ao carregar o DOM
+    const quiz = new QuizFunnel();
+    document.addEventListener('DOMContentLoaded', () => {
+      quiz.init();
+
+      // SocialProof fica guardado globalmente, mas SÓ inicia na VSL
+      window._socialProofManager = new SocialProofManager();
+      window._socialProofStarted = false;
+    });
+  </script>
+</body>
+</html>
