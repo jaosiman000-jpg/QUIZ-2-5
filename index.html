@@ -32,6 +32,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..1000;1,6..12,300..1000&display=swap" rel="stylesheet">
 
+  <!-- Hotmart Checkout Widget Integration -->
+  <script type="text/javascript">
+    function importHotmart(){ 
+      var imported = document.createElement('script'); 
+      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+      document.head.appendChild(imported); 
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet'; 
+      link.type = 'text/css'; 
+      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+      document.head.appendChild(link);
+    } 
+    importHotmart(); 
+  </script>
+
   <style>
     /* ----------------------------------------------------
        DESIGN SYSTEM (Sálvia & Areia Palette)
@@ -505,6 +520,7 @@
       transition: all 0.25s ease;
       box-shadow: 0 4px 12px rgba(74, 93, 67, 0.12);
       margin-top: auto; /* Push to bottom of flex container */
+      text-decoration: none;
     }
 
     .btn:hover:not(:disabled) {
@@ -1539,9 +1555,9 @@
              adicione style="display:none" no botão e use:
              setTimeout(() => document.getElementById('vsl-cta').style.display = 'flex', 30000);
              ============================================================ -->
-        <button class="btn" id="vsl-cta" onclick="trackCheckoutAndRedirect()">
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta">
           Continuar o Método 2+5 &rarr;
-        </button>
+        </a>
       </section>
 
     </main>
@@ -2051,13 +2067,10 @@
     });
 
     // Tracking do botão de checkout da Hotmart
-    function trackCheckoutAndRedirect() {
+    function trackCheckout() {
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout');
       }
-      setTimeout(() => {
-        window.location.href = 'https://pay.hotmart.com/U106113775E?checkoutMode=10';
-      }, 150);
     }
   </script>
 </body>
