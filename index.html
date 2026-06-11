@@ -1172,6 +1172,12 @@
       transform: translateY(-2px) !important;
       box-shadow: 0 6px 16px rgba(74, 93, 67, 0.2) !important;
     }
+
+    /* Estado oculto do CTA — especificidade maior que a regra base,
+       vence o display:inline-flex !important até os 4min na VSL */
+    a#vsl-cta.vsl-cta-hidden {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -1593,7 +1599,7 @@
              Oculto por padrão. Aparece 4 minutos após entrar na etapa
              da VSL (controlado em prepareVSL()).
              ============================================================ -->
-        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta" style="display:none">
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout vsl-cta-hidden" id="vsl-cta">
           Continuar o Método 2+5 &rarr;
         </a>
       </section>
@@ -2052,7 +2058,7 @@
 
           // Botão de CTA aparece 4 minutos após entrar na VSL
           setTimeout(() => {
-            document.getElementById('vsl-cta').style.display = 'flex';
+            document.getElementById('vsl-cta').classList.remove('vsl-cta-hidden');
           }, 4 * 60 * 1000);
         }
       }
