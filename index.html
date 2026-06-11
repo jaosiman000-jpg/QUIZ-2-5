@@ -1583,26 +1583,17 @@
              Ou: <div class="wistia_embed wistia_async_XXXX"></div>
              ============================================================ -->
         <div class="vsl-video-container">
-          <!-- Player VTurb / ConverteAI -->
+          <!-- Player VTurb / ConverteAI — o loader é injetado em prepareVSL(),
+               só quando o usuário entra nesta etapa (evita autoplay na home) -->
           <vturb-smartplayer id="vid-6a2a0f0d5c43fe03108471a9" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
-          <script type="text/javascript">
-            (function () {
-              var s = document.createElement("script");
-              s.src = "https://scripts.converteai.net/05fe5961-4082-484d-b6e8-94d296fe5fca/players/6a2a0f0d5c43fe03108471a9/v4/player.js";
-              s.async = true;
-              document.head.appendChild(s);
-            })();
-          </script>
         </div>
 
         <!-- ============================================================
              BOTÃO DE CTA — CHECKOUT
-             Por padrão visível imediatamente.
-             Para atrasar a aparição (ex: após 30s de vídeo),
-             adicione style="display:none" no botão e use:
-             setTimeout(() => document.getElementById('vsl-cta').style.display = 'flex', 30000);
+             Oculto por padrão. Aparece 4 minutos após entrar na etapa
+             da VSL (controlado em prepareVSL()).
              ============================================================ -->
-        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta">
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta" style="display:none">
           Continuar o Método 2+5 &rarr;
         </a>
       </section>
@@ -2048,6 +2039,21 @@
         // Tracking Meta Pixel (ViewContent)
         if (typeof fbq === 'function') {
           fbq('track', 'ViewContent', { content_name: 'VSL' });
+        }
+
+        // Carrega o player VTurb só agora — assim o vídeo só inicia
+        // (autoplay) quando o usuário chega nesta etapa, não na home.
+        if (!this._vslLoaded) {
+          this._vslLoaded = true;
+          const s = document.createElement('script');
+          s.src = 'https://scripts.converteai.net/05fe5961-4082-484d-b6e8-94d296fe5fca/players/6a2a0f0d5c43fe03108471a9/v4/player.js';
+          s.async = true;
+          document.head.appendChild(s);
+
+          // Botão de CTA aparece 4 minutos após entrar na VSL
+          setTimeout(() => {
+            document.getElementById('vsl-cta').style.display = 'flex';
+          }, 4 * 60 * 1000);
         }
       }
     }
