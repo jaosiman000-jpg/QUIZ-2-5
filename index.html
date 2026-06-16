@@ -1133,41 +1133,499 @@
     }
 
     /* -------------------------------------------------------
-       OVERRIDE: garante que o botão da VSL mantém a cor
-       original do design, mesmo com o CSS da Hotmart carregado
+       OVERRIDE: CTAs da etapa de resultado — vence o CSS Hotmart
        ------------------------------------------------------- */
+
+    /* CTA principal — terracota (destaque máximo) */
     a#vsl-cta,
     a#vsl-cta:visited,
     a#vsl-cta:hover,
     a#vsl-cta:focus,
     a#vsl-cta:active {
+      background: linear-gradient(135deg, #d4924f 0%, #b87530 100%) !important;
+      color: var(--color-white) !important;
+      border: none !important;
+      box-shadow: 0 4px 18px rgba(200, 138, 79, 0.4) !important;
+      border-radius: var(--radius-md) !important;
+      padding: 18px 24px !important;
+      font-family: var(--font-body) !important;
+      font-size: 1.05rem !important;
+      font-weight: 800 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      margin: 0 0 20px !important;
+      transition: all 0.25s ease !important;
+      letter-spacing: 0.01em !important;
+    }
+
+    a#vsl-cta:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 22px rgba(200, 138, 79, 0.5) !important;
+    }
+
+    a#vsl-cta.vsl-cta-hidden {
+      display: none !important;
+    }
+
+    /* CTAs secundários — sálvia */
+    a.results-cta-sec,
+    a.results-cta-sec:visited,
+    a.results-cta-sec:hover,
+    a.results-cta-sec:focus,
+    a.results-cta-sec:active {
       background: linear-gradient(135deg, var(--color-accent-sage) 0%, var(--color-accent-dark) 100%) !important;
       color: var(--color-white) !important;
       border: none !important;
-      box-shadow: 0 4px 12px rgba(74, 93, 67, 0.12) !important;
+      box-shadow: 0 4px 12px rgba(74, 93, 67, 0.18) !important;
       border-radius: var(--radius-md) !important;
       padding: 16px 24px !important;
       font-family: var(--font-body) !important;
-      font-size: 1rem !important;
+      font-size: 0.97rem !important;
       font-weight: 700 !important;
       text-decoration: none !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
       width: 100% !important;
-      margin-top: auto !important;
+      margin: 0 0 24px !important;
       transition: all 0.25s ease !important;
     }
 
-    a#vsl-cta:hover {
+    a.results-cta-sec:hover {
       transform: translateY(-2px) !important;
-      box-shadow: 0 6px 16px rgba(74, 93, 67, 0.2) !important;
+      box-shadow: 0 6px 16px rgba(74, 93, 67, 0.28) !important;
     }
 
-    /* Estado oculto do CTA — especificidade maior que a regra base,
-       vence o display:inline-flex !important até os 4min na VSL */
-    a#vsl-cta.vsl-cta-hidden {
-      display: none !important;
+    /* -------------------------------------------------------
+       RESULTADO — SEÇÕES DA OFERTA
+       ------------------------------------------------------- */
+
+    .results-divider {
+      border: none;
+      border-top: 1px solid var(--color-lines);
+      margin: 4px 0 24px;
+    }
+
+    /* Hook das 3 peças (card escuro) */
+    .vsl-hook-section {
+      background-color: #2c3827;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .vsl-hook-lead {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 8px;
+    }
+
+    .vsl-hook-title {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #eef2ea;
+      margin-bottom: 20px;
+      line-height: 1.35;
+    }
+
+    .mechanism-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .mechanism-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .mechanism-icon {
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    .mechanism-item-body strong {
+      display: block;
+      color: #dde6d8;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      font-weight: 800;
+    }
+
+    .mechanism-item-body p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .vsl-hook-conclusion {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #c88a4f;
+      font-weight: 700;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 16px;
+      margin: 0;
+    }
+
+    /* Depoimento */
+    .testimonial-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-stars {
+      color: #f5a623;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-quote-mark {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      font-family: var(--font-title);
+      font-size: 4rem;
+      color: rgba(94, 115, 85, 0.07);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonial-quote {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--color-text-main);
+      font-style: italic;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--color-accent-dark);
+    }
+
+    .testimonial-tag {
+      font-size: 0.72rem;
+      color: var(--color-text-soft);
+      font-weight: 600;
+    }
+
+    /* Visão geral do método */
+    .method-overview {
+      margin-bottom: 24px;
+    }
+
+    .method-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin: 8px 0 16px;
+      line-height: 1.35;
+    }
+
+    .method-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .method-phase {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background-color: var(--color-white);
+      border: 1.5px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .phase-num {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-accent-sage);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .method-phase-body strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--color-text-main);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .method-phase-body p {
+      font-size: 0.82rem;
+      color: var(--color-text-soft);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .method-not-ebook {
+      background-color: #f2f5ef;
+      border-left: 4px solid var(--color-accent-sage);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-size: 0.84rem;
+      color: var(--color-text-main);
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    /* Bônus */
+    .bonus-section {
+      margin-bottom: 20px;
+    }
+
+    .bonus-section-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin: 8px 0 16px;
+      line-height: 1.35;
+    }
+
+    .bonus-item {
+      background-color: var(--color-white);
+      border: 1.5px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+
+    .bonus-item-highlight {
+      border-color: var(--color-detail-terracotta);
+      background-color: var(--color-highlight-light);
+    }
+
+    .bonus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .bonus-num {
+      font-size: 0.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent-sage);
+      background-color: #eaf5e6;
+      border: 1px solid var(--color-accent-sage);
+      padding: 3px 8px;
+      border-radius: 99px;
+    }
+
+    .bonus-num-highlight {
+      color: var(--color-detail-terracotta);
+      background-color: #fdecd6;
+      border-color: var(--color-detail-terracotta);
+    }
+
+    .bonus-price-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bonus-original {
+      font-size: 0.78rem;
+      color: var(--color-text-soft);
+      text-decoration: line-through;
+      opacity: 0.65;
+    }
+
+    .bonus-free {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #2e7d32;
+      background-color: #e8f5e9;
+      padding: 2px 8px;
+      border-radius: 99px;
+      border: 1.5px solid #a5d6a7;
+      letter-spacing: 0.05em;
+    }
+
+    .bonus-name {
+      font-size: 0.97rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin: 0 0 8px;
+    }
+
+    .bonus-desc {
+      font-size: 0.82rem;
+      color: var(--color-text-soft);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .bonus-sub-item {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+      color: var(--color-text-soft);
+      line-height: 1.45;
+    }
+
+    .bonus-sub-item:last-child { margin-bottom: 0; }
+
+    .bonus-sub-item strong {
+      color: var(--color-text-main);
+    }
+
+    .bonus-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background-color: #f2f5ef;
+      border: 1px dashed var(--color-lines);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-text-soft);
+      margin-top: 4px;
+    }
+
+    .bonus-total-value {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+    }
+
+    /* Bloco de preço */
+    .price-block {
+      background: linear-gradient(150deg, #2c3827 0%, #3d4f35 100%);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .price-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 14px;
+    }
+
+    .price-original-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .price-original {
+      text-decoration: line-through;
+    }
+
+    .price-by {
+      display: block;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    .price-current {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .price-sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Garantia */
+    .guarantee-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-lines);
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+    }
+
+    .guarantee-row > span {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .guarantee-row strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--color-text-main);
+      margin-bottom: 2px;
+    }
+
+    .guarantee-row p {
+      font-size: 0.78rem;
+      color: var(--color-text-soft);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Lembrete final */
+    .final-reminder {
+      background-color: #f2f5ef;
+      border-left: 4px solid var(--color-accent-sage);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--color-text-main);
+      font-weight: 600;
     }
   </style>
 </head>
@@ -1531,29 +1989,179 @@
       </section>
 
       <!-- ====================================================
-           ETAPA 9 — RESULTADO PERSONALIZADO
-           Usa o desejo da P7 e a soma de pontos para
-           classificar em 3 faixas e montar o diagnóstico.
+           ETAPA 9 — RESULTADO + OFERTA
            ==================================================== -->
       <section class="screen" id="screen-results">
-        <!-- Badge da faixa (preenchido pelo JS conforme score) -->
+
+        <!-- Bloco personalizado — preenchido pelo JS -->
         <div id="result-badge-container"></div>
-
-        <!-- Echo do desejo da P7 — personaliza o resultado -->
         <div class="result-desire-card" id="result-desire-card"></div>
-
-        <!-- Card do diagnóstico da faixa -->
         <div class="result-diagnosis-card">
           <h2 class="result-title" id="result-title"></h2>
           <p class="result-text" id="result-text"></p>
         </div>
 
-        <!-- Frase de ponte (igual para todas as faixas) -->
-        <p class="result-bridge">Eu preparei o primeiro passo pra você — e ele já está pronto, esperando aí embaixo.</p>
-
-        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta">
-          Continuar para o Método 2+5 &rarr;
+        <!-- Ponte + CTA precoce -->
+        <p class="result-bridge">A solução existe — e ela começa em você, não no seu filho.</p>
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10"
+           class="hotmart-fb hotmart__button-checkout results-cta-sec">
+          Quero começar o Método 2+5 &rarr;
         </a>
+
+        <hr class="results-divider">
+
+        <!-- As 3 peças da engenharia do vício -->
+        <div class="vsl-hook-section">
+          <p class="vsl-hook-lead">Por que você já tentou tirar a tela e não funcionou?</p>
+          <h3 class="vsl-hook-title">São 3 peças — e foram desenhadas para você nunca ganhar.</h3>
+          <div class="mechanism-list">
+            <div class="mechanism-item">
+              <span class="mechanism-icon">🔊</span>
+              <div class="mechanism-item-body">
+                <strong>O Som</strong>
+                <p>Não escolhem um som bonito — escolhem o som que o cérebro de uma criança de 3 anos é incapaz de ignorar. Toda vez que toca, ativa o sistema de recompensa. E o objetivo é fazer isso de novo, e de novo, e de novo.</p>
+              </div>
+            </div>
+            <div class="mechanism-item">
+              <span class="mechanism-icon">🎰</span>
+              <div class="mechanism-item-body">
+                <strong>A Recompensa Imprevisível</strong>
+                <p>Igual a uma máquina de cassino: vem às vezes, sem padrão, sem aviso. O cérebro da criança fica preso esperando a próxima — e não consegue parar.</p>
+              </div>
+            </div>
+            <div class="mechanism-item">
+              <span class="mechanism-icon">🚪</span>
+              <div class="mechanism-item-body">
+                <strong>A Porta Fechada</strong>
+                <p>Quando um vídeo acaba, o próximo já começou. Fecham a única brecha em que ela poderia sair.</p>
+              </div>
+            </div>
+          </div>
+          <p class="vsl-hook-conclusion">Você não estava falhando. Estava tentando vencer, sozinha, um sistema construído por dezenas de profissionais para você nunca ganhar. A culpa nunca foi sua.</p>
+        </div>
+
+        <!-- Depoimento -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="testimonial-quote-mark">"</span>
+          <p class="testimonial-quote">"Os primeiros dias foram difíceis. Teve choro, teve birra, teve noite em que liguei às onze da noite achando que estava fazendo mal pra minha filha. Mas no 7º dia eu mandei três coisas: uma foto dela me olhando nos olhos. Um áudio dela falando uma frase inteira. E uma mensagem: 'ela me abraçou sem eu pedir'. O olhar. A palavra. O abraço. Ela tinha voltado."</p>
+          <div class="testimonial-footer">
+            <span class="testimonial-author">Mãe da Liz, 4 anos</span>
+            <span class="testimonial-tag">7º dia do Método 2+5</span>
+          </div>
+        </div>
+
+        <!-- O que é o Método -->
+        <div class="method-overview">
+          <span class="eyebrow">Como funciona</span>
+          <h3 class="method-title">Método 2+5: eu do seu lado do dia 1 ao dia 7</h3>
+          <div class="method-phases">
+            <div class="method-phase">
+              <span class="phase-num">2</span>
+              <div class="method-phase-body">
+                <strong>Dias de Preparação</strong>
+                <p>Você não tira nada da criança ainda. Prepara a casa, as palavras e a sua cabeça. Você deixa de ser a mãe culpada e vira o guia.</p>
+              </div>
+            </div>
+            <div class="method-phase">
+              <span class="phase-num">5</span>
+              <div class="method-phase-body">
+                <strong>Dias de Travessia</strong>
+                <p>Uma aula curta por dia. Você vê, com seus próprios olhos, os primeiros sinais do seu filho voltando — o olhar, a palavra, o abraço.</p>
+              </div>
+            </div>
+          </div>
+          <p class="method-not-ebook">Não é um e-book parado, nem mais um "guia de dicas" que te abandona no primeiro choro. É um acompanhamento, uma aula curta para cada dia, do começo ao fim da travessia.</p>
+        </div>
+
+        <!-- Bônus -->
+        <div class="bonus-section">
+          <span class="eyebrow">Bônus exclusivos</span>
+          <h3 class="bonus-section-title">Tudo incluso com a sua travessia</h3>
+
+          <div class="bonus-item">
+            <div class="bonus-header">
+              <span class="bonus-num">BÔNUS 1</span>
+              <div class="bonus-price-row">
+                <span class="bonus-original">R$ 197</span>
+                <span class="bonus-free">GRÁTIS</span>
+              </div>
+            </div>
+            <h4 class="bonus-name">Comunidade Exclusiva de Pais</h4>
+            <p class="bonus-desc">Pais e mães vivendo a mesma travessia, ao mesmo tempo. Converse, troque experiências e desabafe nos dias difíceis. Quem atravessa acompanhado não desiste no meio do caminho.</p>
+          </div>
+
+          <div class="bonus-item">
+            <div class="bonus-header">
+              <span class="bonus-num">BÔNUS 2</span>
+              <div class="bonus-price-row">
+                <span class="bonus-original">R$ 197</span>
+                <span class="bonus-free">GRÁTIS</span>
+              </div>
+            </div>
+            <h4 class="bonus-name">Kit de Materiais Práticos</h4>
+            <p class="bonus-desc">
+              <span class="bonus-sub-item">&#128203; <strong>Cartão de Emergência</strong> — para seguir na hora exata da crise, quando seu filho surtar e você não souber o que fazer</span>
+              <span class="bonus-sub-item">&#128221; <strong>Diário de Sinais</strong> — para registrar, dia a dia, seu filho voltando</span>
+              <span class="bonus-sub-item">&#128218; <strong>Manual do Novo Normal</strong> — para garantir que tudo que você conquistar dure pra vida toda</span>
+            </p>
+          </div>
+
+          <div class="bonus-item bonus-item-highlight">
+            <div class="bonus-header">
+              <span class="bonus-num bonus-num-highlight">BÔNUS 3 &middot; ESPECIAL</span>
+              <div class="bonus-price-row">
+                <span class="bonus-original">R$ 197</span>
+                <span class="bonus-free">GRÁTIS</span>
+              </div>
+            </div>
+            <h4 class="bonus-name">Live Exclusiva &mdash; 15 de Julho</h4>
+            <p class="bonus-desc">Com a participação especial de <strong>Silvana Moreira</strong>. Muito conhecimento numa live só. Uma noite que será inesquecível.</p>
+          </div>
+
+          <div class="bonus-total">
+            <span>Valor total dos bônus</span>
+            <span class="bonus-total-value"><s>R$ 591,00</s></span>
+          </div>
+        </div>
+
+        <!-- Bloco de preço -->
+        <div class="price-block">
+          <p class="price-label">Acesso completo ao Método 2+5 + 3 Bônus</p>
+          <div class="price-original-row">
+            <span>De</span>
+            <span class="price-original">R$ 257,00</span>
+          </div>
+          <span class="price-by">por apenas</span>
+          <span class="price-current">R$ 97</span>
+          <p class="price-sub">Pagamento único &middot; Sem mensalidade &middot; Acesso imediato</p>
+        </div>
+
+        <!-- CTA principal -->
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10"
+           class="hotmart-fb hotmart__button-checkout" id="vsl-cta">
+          Sim, quero garantir minha vaga agora &rarr;
+        </a>
+
+        <!-- Garantia -->
+        <div class="guarantee-row">
+          <span>&#128274;</span>
+          <div>
+            <strong>Compra 100% segura</strong>
+            <p>7 dias de garantia total. Se não gostar, devolvemos tudo.</p>
+          </div>
+        </div>
+
+        <!-- Lembrete final + CTA final -->
+        <div class="final-reminder">
+          Você já fez a parte mais difícil: pediu ajuda. Agora faltam 7 aulas em 7 dias para descobrir que o seu filho nunca foi o problema &mdash; ele só estava preso, esperando alguém abrir a porta.
+        </div>
+
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10"
+           class="hotmart-fb hotmart__button-checkout results-cta-sec">
+          Vem comigo terminar o que a gente começou &rarr;
+        </a>
+
       </section>
 
     </main>
