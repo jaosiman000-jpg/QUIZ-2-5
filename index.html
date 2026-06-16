@@ -23,15 +23,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Método 2+5 - Diagnóstico de Tela Infantil</title>
 
-  <!-- VTurb / ConverteAI — preload do player da VSL -->
-  <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-  <link rel="preload" href="https://scripts.converteai.net/05fe5961-4082-484d-b6e8-94d296fe5fca/players/6a2a0f0d5c43fe03108471a9/v4/player.js" as="script">
-  <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-  <link rel="preload" href="https://cdn.converteai.net/05fe5961-4082-484d-b6e8-94d296fe5fca/6a2a0ce9b9cbb6fe0f919f30/main.m3u8" as="fetch">
-  <link rel="dns-prefetch" href="https://cdn.converteai.net">
-  <link rel="dns-prefetch" href="https://scripts.converteai.net">
-  <link rel="dns-prefetch" href="https://images.converteai.net">
-  <link rel="dns-prefetch" href="https://license.vturb.com">
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Descubra o quanto a tela já está afetando o seu filho — e exatamente o que fazer a partir de hoje. Responda 9 perguntas rápidas.">
@@ -1560,47 +1551,8 @@
         <!-- Frase de ponte (igual para todas as faixas) -->
         <p class="result-bridge">Eu preparei o primeiro passo pra você — e ele já está pronto, esperando aí embaixo.</p>
 
-        <button class="btn" onclick="quiz.goToVSL()">Assistir minha primeira aula &rarr;</button>
-      </section>
-
-      <!-- ====================================================
-           ETAPA 10 — A PÁGINA DA VSL
-           NOTA DE COPY: o enquadramento "Aula 1" é intencional.
-           Tratar a VSL como "primeira aula" cria a sensação de
-           que o lead já está dentro do método — aumenta o
-           engajamento e a sensação de pertencimento antes mesmo
-           de comprar. É uma decisão estratégica de copywriting.
-           ==================================================== -->
-      <section class="screen" id="screen-vsl">
-        <!-- Eyebrow em estilo "badge liberado" com ponto animado -->
-        <div class="vsl-eyebrow">
-          <span class="vsl-dot"></span>
-          MÉTODO 2+5 · AULA 1 (LIBERADA)
-        </div>
-
-        <h2 class="title-primary" id="vsl-title">Sua primeira aula está pronta.</h2>
-
-        <p class="vsl-subtitle">Aperta o play. Em poucos minutos, a Natália vai te mostrar exatamente por que nada funcionou até agora — e o caminho de 7 dias pra reverter.</p>
-
-        <!-- ============================================================
-             PLAYER DA VSL — CONTAINER RESPONSIVO 16:9
-             Substitua o conteúdo interno pelo embed do seu player:
-             Ex: <iframe src="https://seulink.com/embed/..." ...></iframe>
-             Ou: <div class="wistia_embed wistia_async_XXXX"></div>
-             ============================================================ -->
-        <div class="vsl-video-container">
-          <!-- Player VTurb / ConverteAI — o loader é injetado em prepareVSL(),
-               só quando o usuário entra nesta etapa (evita autoplay na home) -->
-          <vturb-smartplayer id="vid-6a2a0f0d5c43fe03108471a9" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
-        </div>
-
-        <!-- ============================================================
-             BOTÃO DE CTA — CHECKOUT
-             Oculto por padrão. Aparece 4 minutos após entrar na etapa
-             da VSL (controlado em prepareVSL()).
-             ============================================================ -->
-        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout vsl-cta-hidden" id="vsl-cta">
-          Continuar o Método 2+5 &rarr;
+        <a onclick="trackCheckout()" href="https://pay.hotmart.com/U106113775E?checkoutMode=10" class="btn hotmart-fb hotmart__button-checkout" id="vsl-cta">
+          Continuar para o Método 2+5 &rarr;
         </a>
       </section>
 
@@ -1635,8 +1587,7 @@
           'screen-micro2',      // 9 — Microrecompensa 2 (não conta)
           'screen-p7',          // 10 — P7: Desejo (não pontua, guarda texto)
           'screen-processing',  // 11 — Processing theater (auto-avança)
-          'screen-results',     // 12 — Resultado personalizado
-          'screen-vsl'          // 13 — VSL "Aula 1"
+          'screen-results'      // 12 — Resultado personalizado
         ];
 
         // -------------------------------------------------------
@@ -1657,8 +1608,7 @@
           'screen-micro2':     { showBar: true,  percent: 85,  text: '6 de 7' }, // P6 concluída, micro não conta
           'screen-p7':         { showBar: true,  percent: 85,  text: '7 de 7' }, // vindo do micro2
           'screen-processing': { showBar: true,  percent: 100, text: '7 de 7' }, // P7 concluída
-          'screen-results':    { showBar: false, percent: 100, text: '' },
-          'screen-vsl':        { showBar: false, percent: 100, text: '' }
+          'screen-results':    { showBar: false, percent: 100, text: '' }
         };
       }
 
@@ -1706,13 +1656,12 @@
         if (targetId === 'screen-micro2')     this.prepareMicro2();
         if (targetId === 'screen-processing') this.startProcessing();
         if (targetId === 'screen-results')    this.prepareResults();
-        if (targetId === 'screen-vsl')        this.prepareVSL();
 
-        // Logo "Método 2+5": só visível na VSL
+        // Logo "Método 2+5": só visível nos resultados
         const logo = document.querySelector('.brand-logo');
         const header = document.querySelector('.app-header');
         if (logo) {
-          logo.style.display = (targetId === 'screen-vsl') ? '' : 'none';
+          logo.style.display = (targetId === 'screen-results') ? '' : 'none';
         }
         // Header inteiro: oculto na intro (sem logo e sem botão voltar)
         if (header) {
@@ -1752,8 +1701,8 @@
           if (percentEl) percentEl.innerText = `${config.percent}%`;
         }
 
-        // Mostra o botão voltar em todas as telas exceto intro, processing, results e vsl
-        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results', 'screen-vsl'];
+        // Mostra o botão voltar em todas as telas exceto intro, processing e results
+        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results'];
         if (backBtn) {
           if (noBackScreens.includes(stepId)) {
             backBtn.classList.add('hidden');
@@ -1861,17 +1810,13 @@
       }
 
       prev() {
-        // Não permite voltar da intro, processing, results ou vsl
-        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results', 'screen-vsl'];
+        // Não permite voltar da intro, processing ou results
+        const noBackScreens = ['screen-intro', 'screen-processing', 'screen-results'];
         const currentId = this.steps[this.state.currentStepIndex];
         if (noBackScreens.includes(currentId)) return;
         if (this.state.currentStepIndex > 0) {
           this.goToStep(this.state.currentStepIndex - 1);
         }
-      }
-
-      goToVSL() {
-        this.goToStep(this.steps.indexOf('screen-vsl'));
       }
 
       // --------------------------------------------------------
@@ -2033,35 +1978,6 @@
         document.getElementById('result-text').innerText  = texto;
       }
 
-      // --------------------------------------------------------
-      // VSL — personaliza o título com referência ao filho
-      // --------------------------------------------------------
-      prepareVSL() {
-        // O título pode ser personalizado futuramente com o nome
-        // ou a faixa do diagnóstico. Por ora usa texto genérico.
-        document.getElementById('vsl-title').innerText =
-          'Sua primeira aula está pronta.';
-
-        // Tracking Meta Pixel (ViewContent)
-        if (typeof fbq === 'function') {
-          fbq('track', 'ViewContent', { content_name: 'VSL' });
-        }
-
-        // Carrega o player VTurb só agora — assim o vídeo só inicia
-        // (autoplay) quando o usuário chega nesta etapa, não na home.
-        if (!this._vslLoaded) {
-          this._vslLoaded = true;
-          const s = document.createElement('script');
-          s.src = 'https://scripts.converteai.net/05fe5961-4082-484d-b6e8-94d296fe5fca/players/6a2a0f0d5c43fe03108471a9/v4/player.js';
-          s.async = true;
-          document.head.appendChild(s);
-
-          // Botão de CTA aparece 4 minutos após entrar na VSL
-          setTimeout(() => {
-            document.getElementById('vsl-cta').classList.remove('vsl-cta-hidden');
-          }, 4 * 60 * 1000);
-        }
-      }
     }
 
     // Social Proof Notifications Generator
